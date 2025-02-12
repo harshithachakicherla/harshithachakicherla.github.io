@@ -5,6 +5,19 @@ let user = {}
 // let username = "";
 // let currBalance = 0;
 document.write("<div id=root></div>");
+function toggle(color)
+{
+    if(color=='dark')
+    {
+        document.body.style.background="black";
+    document.body.style.color="white";
+    }
+    else
+    {
+        document.body.style.background="white";
+        document.body.style.color="black";
+    }
+}
 function showUser() {
   if (document.getElementById("type").value == "3") {
     console.log("Transfer")
