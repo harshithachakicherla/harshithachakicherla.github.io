@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+       let users=[]
+       let useremail=""
+       let cbal=0
+       let username=""
+         function reg()
+        {
+            let str=`
+            <div>
+                <h2>REGIST FOFRM</h2>
+    <p><input type="text" id="name" placeholder="enter name"></p>
+    <p><input type="email" id="email" placeholder="enter mail"></p>
+    <p><input type="password" id="password" placeholder="enter pw"></p>
+    <p><input type="date" id="dob" placeholder="enter dob"></p>
+    <button onclick="adduser()">Submit</button><br><br>
+    <button onclick="sh()">Already have an accnt</button>
+    </div>`
+    root.innerHTML=str;
+        }
+
+        function sh()
+        {
+            let str=`
+            <div>
+                <h2>LOGIN FOFRM</h2>
+                <div id="msg"></div>
+    <p><input type="email" id="email" placeholder="enter mail"></p>
+    <p><input type="password" id="password" placeholder="enter pw"></p>
+    <button onclick="wel()">Log in</button><br><br>
+    <button onclick="reg()">Create accnt</button>
+    </div>`
+            root.innerHTML=str;
+        }
+        function wel()
+        {
+            //to display only if email and pw r crct welcome is dsiplayed
+            let email=document.getElementById("email").value;
+            let password=document.getElementById("password").value;
+            for(let i=0;i<users.length;i++)
+        {
+            if(users[i].email==email && users[i].password==password)
+        {
+            useremail=email
+            username=users[i].name
+            cbal=users[i].balance;
+            home();
+        }
+        else
+        {
+            msg.innerHTML="Access denied";
+        }
+    }
+}
+        function adduser()
+        {
+        let name=document.getElementById("name").value;
+        let email=document.getElementById("email").value;
+        let password=document.getElementById("password").value;
+        let dob=document.getElementById("dob").value;
+        //user is an object
+        let user={
+            name:name,
+            email:email,
+            password:password,
+            dob:dob,
+            balance:0
+        }
+        users.push(user);
+           sh();
+        }
+        function home()
+        {
+            let recipientOptions = users
+               .filter(user => user.email !== useremail) 
+               .map(user => `<option value="${user.email}">${user.name}</option>`)
+               .join('');
+            let str=`
+            <h2>welcome ${username}</h2>
+            <button onclick="sh()">Log out</button>
+            <p><input type="number" id="amnt" placeholder="enter amnt">
+            <p><select id="type" onchange="rec()">
+                <option value=0>--select--</option>
+                <option value=1>deposit</option>
+                <option value=2>withdraw</option>
+                <option value=3>transfer</option>
+                </select></p>
+                 <p id="recipientContainer" style="display:none;">
+                <select id="seluser">
+                    <option value="">--Select Recipient--</option>
+                    ${recipientOptions}
+                </select>
+            </p>
+                <button onclick="act()">Submit</button>
+                <p>Current Balance: <span id='spBalance'>${cbal}</span></p>`
+
+        root.innerHTML=str;
+            }
+            function rec() {
+           let type = document.getElementById("type").value;
+           let recipientContainer = document.getElementById("recipientContainer");
+           recipientContainer.style.display = (type == 3) ? "block" : "none";
+       }
+
+            function act() 
+            {
+    let amnt = parseInt(document.getElementById("amnt").value);
+    let type = document.getElementById("type").value;
+
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].email == useremail) { 
+            if (type == 1) {
+                users[i].balance += amnt;
+            } else if (type ==2) {
+                if (users[i].balance < amnt) {
+                    spBalance.innerHTML="Insuff bal";
+                    break
+                } else {
+                    users[i].balance -= amnt;
+                }
+            }
+            else if(type==3)
+            {
+                let recipientEmail = document.getElementById("seluser").value;
+                       if (recipientEmail === "") {
+                           alert("Please select a recipient.");
+                           return;
+                       }
+
+                       let recipientIndex = users.findIndex(user => user.email === recipientEmail);
+                       if (recipientIndex === -1) {
+                           alert("Recipient not found.");
+                           return;
+                       }
+
+                       if (users[i].balance < amnt) {
+                           spBalance.innerHTML = "Insufficient Balance";
+                           return;
+                       }
+                       users[i].balance -= amnt;
+                       users[recipientIndex].balance += amnt;
+                   }
+
+                   spBalance.innerHTML = users[i].balance;
+                   break;
+               }
+           }
+       }
+       </script>
+</head>
+<body onload="sh()">
+    <h1>ABC BANK</h1><hr>
+    <div id="root"></div>
+    <h5>Copyrights@reserved</h5>
+</body>
+</html>
