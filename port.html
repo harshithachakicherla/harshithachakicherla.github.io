@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshitha's Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { 
+            background: linear-gradient(to right, #f5f5f5, #e0e0e0);
+            color: #333; 
+            scroll-behavior: smooth;
+        }
+        header { 
+            background: #222; 
+            color: white; 
+            padding: 20px; 
+            text-align: center; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+        }
+        nav { display: flex; justify-content: center; gap: 20px; padding: 10px; }
+        nav a { color: white; text-decoration: none; font-size: 18px; cursor: pointer; }
+        section { padding: 80px 50px; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero { background: #444; color: white; }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .projects {
+    background: #ffebcd;
+    padding: 50px;
+    text-align: center;
+}
+
+.project-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 90%;
+    margin: auto;
+}
+
+.project-box {
+    width: 30%;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+        .image-container img {
+            width: 150px;
+            border-radius: 50%;
+        }
+        .projects { background: #ffebcd; }
+        .services { background: #add8e6; display: flex; flex-direction: column; align-items: center; }
+        .services .service-container { display: flex; justify-content: space-around; width: 80%; }
+        .service-box { width: 30%; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .about { background: #98fb98; }
+        .contact { background: #f08080; }
+        form { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin: auto; }
+        input, textarea { padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #222; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+
+    </style>
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Harshitha's Portfolio</h1>
+        <nav>
+            <a onclick="scrollToSection('projects')">Projects</a>
+            <a onclick="scrollToSection('services')">Services</a>
+            <a onclick="scrollToSection('skills')">Skills</a>
+            <a onclick="scrollToSection('about')">About</a>
+            <a onclick="scrollToSection('contact')">Contact</a>
+        </nav>
+    </header>
+    
+    <section class="hero" id="hero">
+        <div class="image-container">
+            <img src="Harshitha_Treasurer (2).jpg" alt="Harshitha's Image">
+        </div>
+        <div class="welcome-section">
+            <h2>Welcome to My Portfolio</h2>
+        </div>
+        <br><br>
+        <p>As a Full-Stack Developer, I specialize in building end-to-end web applications that offer seamless user experiences and robust back-end functionality. With expertise in both front-end and back-end technologies, I am capable of designing, developing, and deploying scalable and efficient solutions. I thrive in creating responsive, dynamic user interfaces using modern frameworks and technologies, while also developing the underlying infrastructure that ensures performance and security. I am experienced with version control tools like Git and platforms like GitHub or GitLab for collaborative development.</p>
+        <br><br>
+        <p>Data Scientist | Web Developer | AI Enthusiast</p>
+    </section>
+    
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <br><br>
+        <div class="project-container">
+            <div class="project-box">
+                <h3><a href="#">Project 1</a></h3>
+                <br><br>
+                <p>The E-Shopify is an online store platform designed to provide users with a seamless shopping experience. The platform enables businesses to sell their products online, manage inventory, handle payments, and provide customer support. The online store supports both buyers and sellers, allowing them to interact in an intuitive and secure environment. It features a modern, responsive interface, and is optimized for desktop usage.</p>
+            </div>
+            <div class="project-box">
+                <h3><a href="#">Project 2</a></h3>
+                <br><br>
+                <p>The provided code is a simple banking web application built using HTML, CSS, and JavaScript. 
+                    It allows users to register, log in, view their balance, and perform transactions such as 
+                    deposits, withdrawals, and transfers to other users. The app maintains user data in a JavaScript 
+                    array and dynamically updates the UI using innerHTML manipulation.The interface is styled with a modern, gradient background and responsive design. 
+                    The app lacks backend integration, so data persistence is lost on page reload.</p>
+            </div>
+            <div class="project-box">
+                <h3><a href="#">Project 3</a></h3>
+                <br><br>
+                <p> This HTML code creates a simple online store with a shopping cart feature. 
+                    It displays products dynamically using the showProducts() function, which 
+                    is called when the page loads. The header shows the store's name and a 
+                    clickable cart indicator showing the number of items. Products are displayed 
+                    in the divProducts section. Clicking on the cart shows the selected items in 
+                    the divCartBlock with a total price and a "Close" button. The layout is styled 
+                    with an external CSS file (styles.css), and functionality is powered by JavaScript (index.js)</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="services">
+        <h2>Services</h2>
+        <br><br><br>
+        <div class="service-container">
+            <div class="service-box">
+                <h3>Web App Development</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quia nobis eligendi reiciendis.</p>
+            </div>
+            <div class="service-box">
+                <h3>Mobile App Development</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quia nobis eligendi reiciendis.</p>
+            </div>
+            <div class="service-box">
+                <h3>Backend Development</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quia nobis eligendi reiciendis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <br><br>
+        <p style="word-spacing: 20px";><strong>Java Python React.js MySQL</strong></p>
+        <br>
+        <div class="skills-container">
+            <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java" width="100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" width="100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React.js" width="100">
+            <img src="https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" alt="MySQL" width="100">
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>I'm Harshitha, a passionate Computer Science student specializing in Data Science and Web Development. I love crafting innovative solutions, optimizing algorithms, and building AI-powered applications that make a real-world impact. My expertise spans Java, Python, React.js, and MySQL, and I enjoy solving complex challenges in competitive programming. Beyond coding, I am always eager to explore emerging technologies and push the boundaries of what's possible. When I'm not developing, you’ll find me brainstorming new project ideas, diving into data visualization, or enhancing user experiences through smart automation.</p>
+    </section>
+    
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</body>
+</html>
