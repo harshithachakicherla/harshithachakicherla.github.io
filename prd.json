@@ -1,0 +1,45 @@
+
+[
+    {
+      "id": 1,
+      "name": "Product 1",
+      "desc": "Description of the product. Description of the product. ",
+      "price": 25,
+      "url": "https://picsum.photos/id/1/300/300"
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "desc": "Description of the product. Description of the product. ",
+      "price": 45,
+      "url": "https://picsum.photos/id/2/300/300"
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "desc": "Description of the product. Description of the product. ",
+      "price": 30,
+      "url": "https://picsum.photos/id/3/300/300"
+    },
+    {
+        "id": 4,
+        "name": "Product 4",
+        "desc": "Description of the product. Description of the product. ",
+        "price": 60,
+        "url": "https://picsum.photos/id/4/300/300"
+      },
+      {
+        "id": 5,
+        "name": "Product 5",
+        "desc": "Description of the product. Description of the product. ",
+        "price": 30,
+        "url": "https://picsum.photos/id/5/300/300"
+      },
+      {
+        "id": 6,
+        "name": "Product 6",
+        "desc": "Description of the product. Description of the product. ",
+        "price": 45,
+        "url": "https://picsum.photos/id/7/300/300"
+      }
+  ]
