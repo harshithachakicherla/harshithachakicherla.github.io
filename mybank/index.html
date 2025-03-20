@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HDFC Bank</title>
+    <style>
+      body {
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+      }
+      h1 {
+        color:brown;
+      }
+      #root {
+        background:#ccc;
+        padding: 40px;
+        margin: 20px auto;
+        width: 300px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        background-color:blue;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color:blue;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+    <script>
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      let useremail = "";
+      let username = "";
+      let currBalance = 0;
+      
+      function saveData() {
+        let amount = Number(document.getElementById("amount").value);
+        let type = document.getElementById("type").value;
+        let recipientEmail = document.getElementById("recipient")?.value;
+        
+        for (let i = 0; i < users.length; i++) {
+          if (users[i].email == useremail) {
+            if (type == "1") {
+              users[i].balance += amount;
+            } else if (type == "2") {
+              if (users[i].balance >= amount) {
+                users[i].balance -= amount;
+              } else {
+                alert("Insufficient Balance to Withdraw");
+                return;
+              }
+            } else if (type == "3") {
+              if (users[i].balance >= amount) {
+                let recipient = users.find(user => user.email === recipientEmail);
+                if (recipient) {
+                  users[i].balance -= amount;
+                  recipient.balance += amount;
+                } else {
+                  alert("Recipient not found");
+                  return;
+                }
+              } else {
+                alert("Insufficient Balance to Transfer");
+                return;
+              }
+            }
+            currBalance = users[i].balance;
+            localStorage.setItem("users", JSON.stringify(users));
+            spBalance.innerHTML = currBalance;
+            break;
+          }
+        }
+      }
+      function home() {
+        let recipientInput = `
+          <p><input type="text" id="recipient" placeholder="Recipient Email" style="display:none;"></p>
+        `;
+        let str = `
+            <h2>Welcome ${username}</h2>
+            <button onclick='showLogin()'>Logout</button>
+            <p><input type="number" id="amount" placeholder="Enter Amount"></p>
+            <p><select id="type" onchange="toggleRecipient()">
+               <option value=0>--Select--</option>
+               <option value=1>Deposit</option>
+               <option value=2>Withdraw</option>
+               <option value=3>Transfer</option>
+               </select></p>
+               ${recipientInput}
+               <button onclick='saveData()'>Submit</button>
+               <p>Current Balance: <span id='spBalance'>${currBalance}</span></p>
+            `;
+        root.innerHTML = str;
+      }
+      function toggleRecipient() {
+        let type = document.getElementById("type").value;
+        let recipientInput = document.getElementById("recipient");
+        if (type == "3") {
+          recipientInput.style.display = "block";
+        } else {
+          recipientInput.style.display = "none";
+        }
+      }
+      function addUser() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let dob = document.getElementById("dob").value;
+        
+        if (users.find(user => user.email === email)) {
+          alert("User already exists");
+          return;
+        }
+        
+        let user = {
+          name: name,
+          email: email,
+          password: password,
+          dob: dob,
+          balance: 0,
+        };
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+        showLogin();
+      }
+      function chkUser() {
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let user = users.find(user => user.email === email && user.password === password);
+        if (user) {
+          useremail = email;
+          username = user.name;
+          currBalance = user.balance;
+          home();
+        } else {
+          document.getElementById("msg").innerHTML = "Access Denied";
+        }
+      }
+      function showForm() {
+        let str = `
+        <h2>Registration Form</h2>
+        <p><input type="text" id="name" placeholder="Name"></p>
+        <p><input type="text" id="email" placeholder="Email"></p>
+        <p><input type="password" id="password" placeholder="Password"></p>
+        <p><input type="date" id="dob"></p>
+        <p><button onclick='addUser()'>Submit</button></p>
+        <p>Already a member?<button onclick='showLogin()'>Login Here</button></p>
+        `;
+        root.innerHTML = str;
+      }
+      function showLogin() {
+        let str = `
+        <div>
+            <h2>Login Form</h2>
+            <div id='msg' class='error'></div>
+            <p><input id="email" type="text" placeholder="Email"></p>
+            <p><input id="password" type="password" placeholder="Password"></p>
+            <button onclick='chkUser()'>Log In</button>
+            <p><button onclick='showForm()'>Create Account</button></p>
+        </div>
+        `;
+        root.innerHTML = str;
+      }
+    </script>
+  </head>
+  <body onload="showLogin()">
+    <h1>HDFC Bank</h1>
+    <div id="root"></div>
+    <h3>&copy; 2025. All rights reserved.</h3>
+  </body>
+</html>
